@@ -7,12 +7,12 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>Category: JS基础 - 黄律铭</title>
+<title>Tag: 算法 - 黄律铭</title>
 
 
     <meta property="og:type" content="website">
 <meta property="og:title" content="黄律铭">
-<meta property="og:url" content="http://yoursite.com/categories/JS%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:url" content="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="黄律铭">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
@@ -129,9 +129,8 @@
     <div class="card-content">
         <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
-            <li><a href="/categories">Categories</a></li>
-            
-            <li class="is-active"><a href="#" aria-current="page">JS基础</a></li>
+            <li><a href="/tags">Tags</a></li>
+            <li class="is-active"><a href="#" aria-current="page">算法</a></li>
         </ul>
         </nav>
     </div>
@@ -141,8 +140,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/2020/02/24/function-declaration/" class="image is-7by1">
-            <img class="thumbnail" src="https://picabstract-preview-ftn.weiyun.com/ftn_pic_abs_v3/9f4ff76b6378c15dfb0743064b14d0a876bddb7a007e65ccfbde76d1b5a8eeb23f927d9f52be64c138e781b91ce8c9ba?pictype=scale&amp;from=30013&amp;version=3.3.3.3&amp;uin=237737971&amp;fname=img-02.jpg&amp;size=750" alt="函数声明与函数表达式的区别">
+        <a href="/2020/02/24/sortings/" class="image is-7by1">
+            <img class="thumbnail" src="https://picabstract-preview-ftn.weiyun.com/ftn_pic_abs_v3/75ffbb65826c2c2bde54a7d4905bd8af6c2bf884eb38569c029eb34621718505c62c4c296b4ff1d74b40f6cf47e9b1b4?pictype=scale&amp;from=30013&amp;version=3.3.3.3&amp;uin=237737971&amp;fname=img-17.jpg&amp;size=750" alt="sortings">
         </a>
     </div>
     
@@ -150,17 +149,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-24T11:18:41.000Z">2020-02-24</time>
+                <time class="level-item has-text-grey" datetime="2020-02-24T13:54:14.000Z">2020-02-24</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/JS%E5%9F%BA%E7%A1%80/">JS基础</a>
+                <a class="has-link-grey -link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    a minute read (About 199 words)
+                    4 minutes read (About 656 words)
                 </span>
                 
                 
@@ -169,316 +168,41 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/02/24/function-declaration/">函数声明与函数表达式的区别</a>
+                <a class="has-link-black-ter" href="/2020/02/24/sortings/">sortings</a>
             
         </h1>
         <div class="content">
-            <p>先看一个例子</p>
+            <h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><h3 id="算法简介"><a href="#算法简介" class="headerlink" title="算法简介"></a>算法简介</h3><p>冒泡排序是一种简单的的排序算法。它重复地走访过要排序的数列，一次比较两个元素，如果它们的排序错误就交换它们的位置。走访数列的工作是重复地进行直到没有需要交换，也就是说数列已经完成排序了。这个算法的名字由来是因为越小的元素就经由交换慢慢的“浮”到数列的顶端。</p>
+<h3 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h3><ol>
+<li>比较相邻的元素，如果第一个比第二个大，就交换它们的位置；</li>
+<li>对每一对相邻的元素作同样的工作，从第一对到结尾的最后一对，理论上在最后的元素应该是最大的数；</li>
+<li>针对所有元素重复以上的步骤，除了最后一个(因为每次循环中，最后一个数都是最大的数)；</li>
+<li>重复步骤 1 ～ 3，直到排序完成。</li>
+</ol>
+<h3 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubbleSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> len = arr.length;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; len - <span class="number">1</span> - i; j++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (arr[j] &gt; arr[j + <span class="number">1</span>]) &#123;</span><br><span class="line">        [arr[j], arr[j + <span class="number">1</span>]] = [arr[j + <span class="number">1</span>], arr[j]];</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>tips:
+
+设置一标志位pos，用于记录每趟排序中最后一次进行交换的位置。由于pos位置之后非记录均已交换到位，故在进行下一趟排序时只要扫描到pos的位置即可。</code></pre><p>改进后的算法如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubbbleSort2</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> i = arr.length - <span class="number">1</span>; <span class="comment">//初始时，最后位置保持不变</span></span><br><span class="line">  <span class="keyword">while</span> (i &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> pos = <span class="number">0</span>; <span class="comment">//每趟开始时，无记录交换</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; i; j++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (arr[j] &gt; arr[j + <span class="number">1</span>]) &#123;</span><br><span class="line">        pos = j; <span class="comment">// 记录交换位置</span></span><br><span class="line">        [arr[j], arr[j + <span class="number">1</span>]] = [arr[j + <span class="number">1</span>], arr[j]];</span><br><span class="line">      &#125;</span><br><span class="line">      i = pos;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  s;</span><br><span class="line">  <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>tips:
+传统冒泡排序中，每一趟排序操作只能找到一个最大值或最小值，我们可以利用在每趟排序中进行正向和反向两遍冒泡的方法一次得到两个最终值（最大值和最小值），从而使循环次数几乎减少一半。</code></pre><p>改进后的算法如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubbleSort3</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> low = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">let</span> high = arr.length - <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">let</span> j;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span>(low &lt; high) &#123;</span><br><span class="line">    <span class="keyword">for</span> (j=low; j&lt;high; ++j) &#123; <span class="comment">// 正向冒泡，找最大值</span></span><br><span class="line">      <span class="keyword">if</span>（arr[j] &gt; arr[j+<span class="number">1</span>]）&#123;</span><br><span class="line">        [</span><br><span class="line">          arr[j],</span><br><span class="line">          arr[j+<span class="number">1</span>]</span><br><span class="line">        ] = [</span><br><span class="line">          arr[j+<span class="number">1</span>],</span><br><span class="line">          arr[j]</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">      -- high;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (j=high; j&gt;low; --j) &#123;</span><br><span class="line">      <span class="keyword">if</span> (arr[j] &lt; arr[j<span class="number">-1</span>]) &#123;</span><br><span class="line">        [</span><br><span class="line">          arr[j],</span><br><span class="line">          arr[j<span class="number">-1</span>]</span><br><span class="line">        ] = [</span><br><span class="line">          arr[j<span class="number">-1</span>],</span><br><span class="line">          arr[j]</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">      ++ low;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="算法分析"><a href="#算法分析" class="headerlink" title="算法分析"></a>算法分析</h3><ul>
+<li><p>最佳情况：T(n) = O(n)</p>
+<p>当输入的数据已经是正序时</p>
+</li>
+<li><p>最差情况：T(n) = O(n2)</p>
+<p>当输入的数据是反序时</p>
+</li>
+<li><p>平均情况：T(n) = O(n2)</p>
+</li>
+</ul>
+
         </div>
         
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2020/02/24/function-declaration/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/2020/02/24/about-event-loop/" class="image is-7by1">
-            <img class="thumbnail" src="http://wx3.sinaimg.cn/large/b5d1b710ly1g6s7hn2aycj212w0k0dx5.jpg" alt="事件循环">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-24T08:50:13.000Z">2020-02-24</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/JS%E5%9F%BA%E7%A1%80/">JS基础</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    9 minutes read (About 1396 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2020/02/24/about-event-loop/">事件循环</a>
-            
-        </h1>
-        <div class="content">
-            <h2 id="JS-为什么是单线程？"><a href="#JS-为什么是单线程？" class="headerlink" title="JS 为什么是单线程？"></a>JS 为什么是单线程？</h2>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2020/02/24/about-event-loop/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/2020/02/24/about-async-await/" class="image is-7by1">
-            <img class="thumbnail" src="https://picabstract-preview-ftn.weiyun.com/ftn_pic_abs_v3/c4377d4d1853e34ab4de66690eb1706179b491a3cf99b75077b382f7408e03b3ce61ed63d0623a583d159c88c8dcfa74?pictype=scale&amp;from=30013&amp;version=3.3.3.3&amp;uin=237737971&amp;fname=img-04.jpg&amp;size=750" alt="使用async/await更好的解决异步问题">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-24T08:43:53.000Z">2020-02-24</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/JS%E5%9F%BA%E7%A1%80/">JS基础</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    5 minutes read (About 800 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2020/02/24/about-async-await/">使用async/await更好的解决异步问题</a>
-            
-        </h1>
-        <div class="content">
-            <h3 id="一、如何使用-async-await"><a href="#一、如何使用-async-await" class="headerlink" title="一、如何使用 async/await"></a>一、如何使用 async/await</h3><p><strong>async</strong>函数是 Generator 的一个语法糖，使用<strong>async</strong>函数实际上返回的是一个 Promise 对象。如下：</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2020/02/24/about-async-await/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/2020/02/24/about-this/" class="image is-7by1">
-            <img class="thumbnail" src="https://picabstract-preview-ftn.weiyun.com/ftn_pic_abs_v3/d8927891552397d59fc0e4d60a76617d5454173a61bea3375d687f5c5554f26365d28226e5dcbe6216172797c6670928?pictype=scale&amp;from=30013&amp;version=3.3.3.3&amp;uin=237737971&amp;fname=img-06.jpg&amp;size=750" alt="关于this的理解">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-24T08:19:22.000Z">2020-02-24</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/JS%E5%9F%BA%E7%A1%80/">JS基础</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    2 minutes read (About 317 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2020/02/24/about-this/">关于this的理解</a>
-            
-        </h1>
-        <div class="content">
-            <p>关于<code>this</code>的使用，分为以下三种情况：</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2020/02/24/about-this/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/2020/02/24/prototype/" class="image is-7by1">
-            <img class="thumbnail" src="https://blog.zhangruipeng.me/hexo-theme-icarus/gallery/thumbnails/desert.jpg" alt="JS原型与原型链">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-24T04:27:30.062Z">2020-02-24</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/JS%E5%9F%BA%E7%A1%80/">JS基础</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    9 minutes read (About 1361 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2020/02/24/prototype/">JS原型与原型链</a>
-            
-        </h1>
-        <div class="content">
-            <h3 id="普通对象与函数对象"><a href="#普通对象与函数对象" class="headerlink" title="普通对象与函数对象"></a>普通对象与函数对象</h3><p>凡是通过 <strong>new Function()</strong>创建的对象都是<strong>函数对象</strong>，其他的是<strong>普通对象</strong>。</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2020/02/24/prototype/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/2020/02/24/inheritance-prototype/" class="image is-7by1">
-            <img class="thumbnail" src="https://picabstract-preview-ftn.weiyun.com/ftn_pic_abs_v3/4edeeef186376efa82d85b2583c5f72ee607de346b8dd38a8eb1e688a7467863cdf0c9e09e9456a05da655ed021586ac?pictype=scale&amp;from=30013&amp;version=3.3.3.3&amp;uin=237737971&amp;fname=img-03.jpg&amp;size=750" alt="继承的实现方式">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-23T16:24:35.000Z">2020-02-24</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/JS%E5%9F%BA%E7%A1%80/">JS基础</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    9 minutes read (About 1313 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2020/02/24/inheritance-prototype/">继承的实现方式</a>
-            
-        </h1>
-        <div class="content">
-            <h2 id="函数对象的继承"><a href="#函数对象的继承" class="headerlink" title="函数对象的继承"></a>函数对象的继承</h2><p>写在前边，先创建一个父类，用于后边的继承。代码如下：</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2020/02/24/inheritance-prototype/#more">Read More</a>
-                </div>
-            </div>
-        </div>
         
         
     </div>
