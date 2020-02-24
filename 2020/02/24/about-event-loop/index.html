@@ -7,20 +7,23 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>arithmetic - 黄律铭</title>
+<title>事件循环 - 黄律铭</title>
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="arithmetic">
-<meta property="og:url" content="http://yoursite.com/arithmetic/index.html">
+    <meta name="description" content="JS 为什么是单线程？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="事件循环">
+<meta property="og:url" content="http://yoursite.com/2020/02/24/about-event-loop/index.html">
 <meta property="og:site_name" content="黄律铭">
+<meta property="og:description" content="JS 为什么是单线程？">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="article:published_time" content="2020-02-23T15:47:53.000Z">
-<meta property="article:modified_time" content="2020-02-23T15:47:53.534Z">
+<meta property="og:image" content="http://wx3.sinaimg.cn/large/b5d1b710ly1g6s7hn2aycj212w0k0dx5.jpg">
+<meta property="article:published_time" content="2020-02-24T08:50:13.000Z">
+<meta property="article:modified_time" content="2020-02-24T08:54:32.937Z">
 <meta property="article:author" content="huanglvming">
+<meta property="article:tag" content="event-loop">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
+<meta name="twitter:image" content="http://wx3.sinaimg.cn/large/b5d1b710ly1g6s7hn2aycj212w0k0dx5.jpg">
 
 
 
@@ -78,7 +81,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="arithmetic" height="28">
+                <img src="/images/logo.svg" alt="事件循环" height="28">
             
             </a>
         </div>
@@ -114,6 +117,10 @@
                     
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
                 <a class="navbar-item search" title="Search" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -130,15 +137,105 @@
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
 <div class="card">
     
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="http://wx3.sinaimg.cn/large/b5d1b710ly1g6s7hn2aycj212w0k0dx5.jpg" alt="事件循环">
+        </span>
+    </div>
+    
     <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-24T08:50:13.000Z">2020-02-24</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/JS%E5%9F%BA%E7%A1%80/">JS基础</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    9 minutes read (About 1396 words)
+                </span>
+                
+                
+            </div>
+        </div>
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                arithmetic
+                事件循环
             
         </h1>
         <div class="content">
-            
+            <h2 id="JS-为什么是单线程？"><a href="#JS-为什么是单线程？" class="headerlink" title="JS 为什么是单线程？"></a>JS 为什么是单线程？</h2><a id="more"></a>
+
+<p><code>JS</code>最初设计是应用在浏览器中运行，假如<code>JS</code>是多线程机制，则可能存在这样的情况：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">现有两个线程Process1和Process2，它们同时对同一个Dom节点进行操作，其中Process1删除该Dom节点，而Process2编辑该Dom节点。这是两个矛盾的命令，浏览器将无法运行。</span><br></pre></td></tr></table></figure>
+
+<p>因此，<code>JS</code>需要被设计成<strong>单线程</strong>。</p>
+<h2 id="JS-为什么需要异步？"><a href="#JS-为什么需要异步？" class="headerlink" title="JS 为什么需要异步？"></a>JS 为什么需要异步？</h2><p>由于<code>JS</code>的单线程机制，决定了其运行顺序自上而下。如果不存在异步，则后边的程序必须等待前边的程序执行完成才可以进行开始运行。如果前边的程序程序运行时间过长，则导致线程阻塞，浏览器可能处在长时间无响应的状态。因此需要异步执行。</p>
+<h2 id="JS-如何实现异步？"><a href="#JS-如何实现异步？" class="headerlink" title="JS 如何实现异步？"></a>JS 如何实现异步？</h2><p><strong><code>JS</code>是通过事件循环(event loop)来实现异步的，event loop 的机制代表了<code>JS</code>的执行机制。</strong></p>
+<p>举个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">console.log(1);</span><br><span class="line">setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">	console.log(2);</span><br><span class="line">&#125;, 0);</span><br><span class="line">console.log(3);</span><br></pre></td></tr></table></figure>
+
+<p>以上程序的运行结果是：1，3，2。</p>
+<p>也就是说，setTimeout 里的函数并没有立即执行，而是延迟了一段时间，在满足一定的条件之后才会执行。这样的代码称为异步代码，反之称为同步代码。</p>
+<p>在此可以简单概括<code>JS</code>的运行机制如下（event loop(1)）：</p>
+<ul>
+<li>首先判断<code>JS</code>是同步还是异步， 同步任务立即进入主线程，异步任务则进入到<code>event table</code></li>
+<li>异步任务在<code>event table</code>中注册函数，当满足触发条件之后，该任务被推入到<code>event queue</code>中</li>
+<li>同步任务会在主线程上一直执行，直到主线程处于空闲状态，此时，主线程会到<code>event quene</code>中查看是否有可执行的任务，如有，则将该任务推入主线程中继续执行</li>
+</ul>
+<p>如此反复，称为<strong>事件循环</strong></p>
+<p>在此对以上例子进行解析：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">console.log(1); &#x2F;&#x2F;任务1，同步任务，进入到主线程里</span><br><span class="line">setTimeout(() &#x3D;&gt; &#123; &#x2F;&#x2F;任务2，异步任务，进入到event table注册函数，0秒之后被推入event queue中</span><br><span class="line">	console.log(2);</span><br><span class="line">&#125;, 0);</span><br><span class="line">console.log(3); &#x2F;&#x2F;任务3，同步程序，进入到主线程里</span><br><span class="line"></span><br><span class="line">主线程在完成了任务1、任务3后，检查event queue是否存在可执行函数，执行setTimeout里的函数。</span><br><span class="line"></span><br><span class="line">因此最终的输出结果是1-3-2。</span><br></pre></td></tr></table></figure>
+
+<p>在此需要注意的是，异步任务的执行需要两个条件：</p>
+<ul>
+<li>满足触发条件</li>
+<li>主线程空闲</li>
+</ul>
+<p>因此，将函数体<code>setTimeout(() =&gt; fn(), 3000)</code>解释为“定时器在 3 秒之后执行 fn”并不准确，准确的解释应该是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3秒后，fn被推入到event queue，当主线程空闲时，fn从event quene推入到主线程中执行</span><br></pre></td></tr></table></figure>
+
+<p><strong>正因如此，我们并不能完全依赖 setTimeout 作为一个定时器，对于<code>setTimeout(() =&gt; fn(), 3000)</code>，如果主线程需要运行 10 秒，则 fn 实际上是 13 秒后才开始运行。</strong></p>
+<p>再看一个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(() &#x3D;&gt; console.log(1), 0);</span><br><span class="line"></span><br><span class="line">new Promise(resolve &#x3D;&gt; &#123;</span><br><span class="line">    resolve(2);</span><br><span class="line">    console.log(3);</span><br><span class="line">&#125;).then((res) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(res);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">console.log(4);</span><br></pre></td></tr></table></figure>
+
+<p>假如我们利用之前的知识去分析：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(() &#x3D;&gt; console.log(1), 0); &#x2F;&#x2F;任务1，异步任务，进入event table注册，0秒后进入event queue</span><br><span class="line"></span><br><span class="line">new Promise(resolve &#x3D;&gt; &#123; &#x2F;&#x2F;任务2，同步任务，其中包含</span><br><span class="line">    resolve(2);</span><br><span class="line">    console.log(3); &#x2F;&#x2F;任务3，同步任务</span><br><span class="line">&#125;).then((res) &#x3D;&gt; &#123; &#x2F;&#x2F;任务4，异步任务，在event table注册后进入event queue，排在任务1之后</span><br><span class="line">    console.log(res);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">console.log(4); &#x2F;&#x2F;任务5，同步任务</span><br></pre></td></tr></table></figure>
+
+<p>根据此分析，最终的输出结果是：3-4-1-2</p>
+<p>这是正确的输出结果吗？程序执行之后，得到的最终结果应该是：3-4-2-1</p>
+<p>是否因为异步任务的执行顺序不是前后顺序而另有规定，导致输出结果与我们预知的不一样？</p>
+<p>事实上，<strong>单纯的按照异步和同步的划分方式，并不准确。</strong></p>
+<p>准确的划分方式是：</p>
+<ul>
+<li>macro-task(宏任务)：包括整体代码 script,setTimeout,setInterval</li>
+<li>micro-task(微任务)：Promise, process.nextTick</li>
+</ul>
+<p><img src="https://image-static.segmentfault.com/386/112/386112937-5a5763d9ef823_articlex" alt="MacDown Screenshot"></p>
+<p>按照这样的分类方式，JS 的执行机制是（event loop(2)）：</p>
+<ul>
+<li>执行一个宏任务，过程中如果遇到微任务，就将其放在微任务的【事件队列】里</li>
+<li>当前宏任务执行完成后，会查看微任务的【事件队列】，并将其中的全部微任务执行完成</li>
+</ul>
+<p>重复以上 2 步骤，结合 event loop(1)和 event loop(2),就可以得到更准确的 JS 执行机制。</p>
+<p>此时我们再去分析刚刚出错的列子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1.首先执行script下的宏任务，遇到setTimeout,将其放在宏任务的【队列】里</span><br><span class="line">2.遇到 new Promise直接执行，里边的同步任务cosnole.log(3)立即触发</span><br><span class="line">3.遇到 then 方法，是微任务，将其放在微任务的【队列】里</span><br><span class="line">4.遇到console.log(4)直接执行。</span><br><span class="line">5.当主线程完成cosnole.log(3)和console.log(4)后，会去检查微任务的【队列】,发现其中的任务 then,于是执行console.log(res),此处的res &#x3D;&#x3D;&#x3D; 2;</span><br><span class="line">6.当微任务完成之后，会去检查宏任务【队列】，发现setTimeout,并执行</span><br></pre></td></tr></table></figure>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/event-loop/" rel="tag">event-loop</a>
+                </div>
+            </div>
         </div>
         
         
@@ -149,6 +246,20 @@
 
 
 
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/02/24/about-async-await/">
+                <span class="level-item">使用async/await更好的解决异步问题</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
 </div>
@@ -272,6 +383,30 @@
 </div>
     
         
+
+    <div class="card widget" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    Catalogue
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#JS-为什么是单线程？">
+        <span class="has-mr-6">1</span>
+        <span>JS 为什么是单线程？</span>
+        </a></li><li>
+        <a class="is-flex" href="#JS-为什么需要异步？">
+        <span class="has-mr-6">2</span>
+        <span>JS 为什么需要异步？</span>
+        </a></li><li>
+        <a class="is-flex" href="#JS-如何实现异步？">
+        <span class="has-mr-6">3</span>
+        <span>JS 如何实现异步？</span>
+        </a></li></ul>
+            </div>
+        </div>
+    </div>
+
     
         
 <div class="card widget">
@@ -696,7 +831,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="arithmetic" height="28">
+                    <img src="/images/logo.svg" alt="事件循环" height="28">
                 
                 </a>
                 <p class="is-size-7">

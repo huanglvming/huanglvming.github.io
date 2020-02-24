@@ -7,20 +7,23 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>arithmetic - 黄律铭</title>
+<title>关于this的理解 - 黄律铭</title>
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="arithmetic">
-<meta property="og:url" content="http://yoursite.com/arithmetic/index.html">
+    <meta name="description" content="关于this的使用，分为以下三种情况：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于this的理解">
+<meta property="og:url" content="http://yoursite.com/2020/02/24/about-this/index.html">
 <meta property="og:site_name" content="黄律铭">
+<meta property="og:description" content="关于this的使用，分为以下三种情况：">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="article:published_time" content="2020-02-23T15:47:53.000Z">
-<meta property="article:modified_time" content="2020-02-23T15:47:53.534Z">
+<meta property="og:image" content="http://wx3.sinaimg.cn/large/b5d1b710ly1g6s7hn2aycj212w0k0dx5.jpg">
+<meta property="article:published_time" content="2020-02-24T08:19:22.000Z">
+<meta property="article:modified_time" content="2020-02-24T08:32:20.780Z">
 <meta property="article:author" content="huanglvming">
+<meta property="article:tag" content="this">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
+<meta name="twitter:image" content="http://wx3.sinaimg.cn/large/b5d1b710ly1g6s7hn2aycj212w0k0dx5.jpg">
 
 
 
@@ -78,7 +81,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="arithmetic" height="28">
+                <img src="/images/logo.svg" alt="关于this的理解" height="28">
             
             </a>
         </div>
@@ -114,6 +117,10 @@
                     
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
                 <a class="navbar-item search" title="Search" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -130,15 +137,73 @@
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
 <div class="card">
     
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="http://wx3.sinaimg.cn/large/b5d1b710ly1g6s7hn2aycj212w0k0dx5.jpg" alt="关于this的理解">
+        </span>
+    </div>
+    
     <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-24T08:19:22.000Z">2020-02-24</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/JS%E5%9F%BA%E7%A1%80/">JS基础</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 minutes read (About 317 words)
+                </span>
+                
+                
+            </div>
+        </div>
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                arithmetic
+                关于this的理解
             
         </h1>
         <div class="content">
-            
+            <p>关于<code>this</code>的使用，分为以下三种情况：</p>
+<a id="more"></a>
+
+<ul>
+<li>显性调用</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;方式一</span><br><span class="line">function foo()&#123;</span><br><span class="line">	console.log(this.a);</span><br><span class="line">&#125;</span><br><span class="line">var a &#x3D; 1;</span><br><span class="line">foo();</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;方式二</span><br><span class="line">var obj &#x3D; &#123;</span><br><span class="line">	a: 2,</span><br><span class="line">	foo: foo</span><br><span class="line">&#125;</span><br><span class="line">obj.foo();</span><br></pre></td></tr></table></figure>
+
+<p>以上两种方式，都属于显性调用，显性调用的<code>this</code>指向的是调用者。</p>
+<p>第一种方式中，<code>foo()</code>其实等同于<code>Window.foo()</code>,即<code>Window</code>调用了<code>foo()</code>，所以此时<code>foo()</code>中的<code>this</code>指向的是<code>Window</code>，于是输出的结果是 <strong>1</strong>。</p>
+<p>第二种方式中，<code>obj.foo()</code>的调用者是<code>obj</code>,所以<code>foo()</code>的<code>this</code>指向是<code>obj</code>，于是输出的结果是<strong>2</strong>。</p>
+<p>以上两种方式中，第二种方式的优先级更高，因为它对于调用者的指向更明确，所以<code>obj</code>的同名属性覆盖了<code>window</code>的同名属性。</p>
+<ul>
+<li>通过 new 实例化</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var c &#x3D; new foo();</span><br><span class="line">c.a &#x3D; 3;</span><br><span class="line">console.log(c.a);</span><br></pre></td></tr></table></figure>
+
+<p>以上方式通过<code>new</code>实例化了一个对象 c，这种通过<code>new</code>实例化的方式，<code>this</code>会和实例化对象绑定在一起，即<code>this</code>指向的是<code>c</code>。</p>
+<ul>
+<li>通过 call、bind、apply 调用</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function fn(a)&#123;</span><br><span class="line">	console.log(a);</span><br><span class="line">&#125;</span><br><span class="line">function Fn(a)&#123;</span><br><span class="line">	fn.call(this, a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以上通过<code>call</code>调用的方式，<code>this</code>指向的就是构造函数本身。</p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/this/" rel="tag">this</a>
+                </div>
+            </div>
         </div>
         
         
@@ -149,6 +214,27 @@
 
 
 
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/02/24/about-async-await/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">使用async/await更好的解决异步问题</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/02/24/prototype/">
+                <span class="level-item">JS原型与原型链</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
 </div>
@@ -272,6 +358,7 @@
 </div>
     
         
+
     
         
 <div class="card widget">
@@ -696,7 +783,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="arithmetic" height="28">
+                    <img src="/images/logo.svg" alt="关于this的理解" height="28">
                 
                 </a>
                 <p class="is-size-7">
