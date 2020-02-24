@@ -10,16 +10,16 @@
 <title>继承的实现方式 - 黄律铭</title>
 
 
-    <meta name="description" content="函数对象的继承写在前边，先创建一个父类，用于后边的继承。代码如下： 12345678910111213&#x2F;&#x2F; 定义一个动物类function Animal(name) &amp;#123;  &#x2F;&#x2F;属性  this.name &#x3D; name || &quot;Animal&quot;;  &#x2F;&#x2F;实例方法  this.sleep &#x3D; function() &amp;#123;    console.log(&#96;$&amp;#123;this.name&amp;">
+    <meta name="description" content="函数对象的继承写在前边，先创建一个父类，用于后边的继承。代码如下：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="继承的实现方式">
 <meta property="og:url" content="http://yoursite.com/2020/02/24/inheritance-prototype/index.html">
 <meta property="og:site_name" content="黄律铭">
-<meta property="og:description" content="函数对象的继承写在前边，先创建一个父类，用于后边的继承。代码如下： 12345678910111213&#x2F;&#x2F; 定义一个动物类function Animal(name) &amp;#123;  &#x2F;&#x2F;属性  this.name &#x3D; name || &quot;Animal&quot;;  &#x2F;&#x2F;实例方法  this.sleep &#x3D; function() &amp;#123;    console.log(&#96;$&amp;#123;this.name&amp;">
+<meta property="og:description" content="函数对象的继承写在前边，先创建一个父类，用于后边的继承。代码如下：">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
 <meta property="article:published_time" content="2020-02-23T16:24:35.000Z">
-<meta property="article:modified_time" content="2020-02-24T05:02:03.118Z">
+<meta property="article:modified_time" content="2020-02-24T05:58:08.312Z">
 <meta property="article:author" content="huanglvming">
 <meta property="article:tag" content="继承">
 <meta name="twitter:card" content="summary">
@@ -143,11 +143,15 @@
             <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2020-02-23T16:24:35.000Z">2020-02-24</time>
                 
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/JS%E5%9F%BA%E7%A1%80/">JS基础</a>
+                </div>
+                
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    9 minutes read (About 1312 words)
+                    9 minutes read (About 1313 words)
                 </span>
                 
                 
@@ -161,6 +165,8 @@
         </h1>
         <div class="content">
             <h2 id="函数对象的继承"><a href="#函数对象的继承" class="headerlink" title="函数对象的继承"></a>函数对象的继承</h2><p>写在前边，先创建一个父类，用于后边的继承。代码如下：</p>
+<a id="more"></a>
+
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义一个动物类</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//属性</span></span><br><span class="line">  <span class="keyword">this</span>.name = name || <span class="string">"Animal"</span>;</span><br><span class="line">  <span class="comment">//实例方法</span></span><br><span class="line">  <span class="keyword">this</span>.sleep = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span> is sleeping`</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//原型方法</span></span><br><span class="line">Animal.prototype.eat = <span class="function"><span class="keyword">function</span>(<span class="params">food</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span> is eating <span class="subst">$&#123;food&#125;</span>`</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <h3 id="原型链继承"><a href="#原型链继承" class="headerlink" title="原型链继承"></a>原型链继承</h3><p>核心：<strong>将父类的实例作为子类的原型</strong></p>
@@ -341,11 +347,11 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Categories
+                        Category
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            0
+                            1
                         </p>
                     </a>
                 </div>
@@ -499,7 +505,15 @@
                 Categories
             </h3>
             <ul class="menu-list">
-            
+            <li>
+        <a class="level is-marginless" href="/categories/JS%E5%9F%BA%E7%A1%80/">
+            <span class="level-start">
+                <span class="level-item">JS基础</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li>
             </ul>
         </div>
     </div>
@@ -527,7 +541,7 @@
             
             <a href="/2020/02/24/prototype/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/../../static/gallery/img-02.jpg" alt="JS原型与原型链">
+                    <img class="thumbnail" src="https://blog.zhangruipeng.me/hexo-theme-icarus/gallery/thumbnails/desert.jpg" alt="JS原型与原型链">
                 </p>
             </a>
             
@@ -536,7 +550,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-24T04:27:30.062Z">2020-02-24</time></div>
                     <a href="/2020/02/24/prototype/" class="title has-link-black-ter is-size-6 has-text-weight-normal">JS原型与原型链</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/JS%E5%9F%BA%E7%A1%80/">JS基础</a>
                     </p>
                 </div>
             </div>
@@ -555,7 +569,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-23T16:24:35.000Z">2020-02-24</time></div>
                     <a href="/2020/02/24/inheritance-prototype/" class="title has-link-black-ter is-size-6 has-text-weight-normal">继承的实现方式</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/JS%E5%9F%BA%E7%A1%80/">JS基础</a>
                     </p>
                 </div>
             </div>
@@ -648,7 +662,7 @@
             
             <a href="/2020/02/24/prototype/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/../../static/gallery/img-02.jpg" alt="JS原型与原型链">
+                    <img class="thumbnail" src="https://blog.zhangruipeng.me/hexo-theme-icarus/gallery/thumbnails/desert.jpg" alt="JS原型与原型链">
                 </p>
             </a>
             
@@ -657,7 +671,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-24T04:27:30.062Z">2020-02-24</time></div>
                     <a href="/2020/02/24/prototype/" class="title has-link-black-ter is-size-6 has-text-weight-normal">JS原型与原型链</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/JS%E5%9F%BA%E7%A1%80/">JS基础</a>
                     </p>
                 </div>
             </div>
@@ -676,7 +690,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-23T16:24:35.000Z">2020-02-24</time></div>
                     <a href="/2020/02/24/inheritance-prototype/" class="title has-link-black-ter is-size-6 has-text-weight-normal">继承的实现方式</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/JS%E5%9F%BA%E7%A1%80/">JS基础</a>
                     </p>
                 </div>
             </div>
@@ -754,7 +768,7 @@
             </div>
         </div>
     </section>
-    <footer class="footer">
+    <!-- <footer class="footer">
     <div class="container">
         <div class="level">
             <div class="level-start has-text-centered-mobile">
@@ -803,7 +817,7 @@
             </div>
         </div>
     </div>
-</footer>
+</footer> -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
 <script>moment.locale("en");</script>
