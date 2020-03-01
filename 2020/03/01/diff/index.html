@@ -19,7 +19,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://picabstract-preview-ftn.weiyun.com/ftn_pic_abs_v3/84b0f0bb680df0464c6e7ce317122b9b74b85d0f659c5ed5a9364a67d257c19e9a68bfb044f4c970e552429860cdc676?pictype=scale&from=30013&version=3.3.3.3&uin=237737971&fname=img-13.jpg&size=750">
 <meta property="article:published_time" content="2020-03-01T09:31:50.000Z">
-<meta property="article:modified_time" content="2020-03-01T09:34:43.048Z">
+<meta property="article:modified_time" content="2020-03-01T09:38:32.695Z">
 <meta property="article:author" content="huanglvming">
 <meta property="article:tag" content="vue">
 <meta property="article:tag" content="react">
@@ -159,7 +159,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    12 minutes read (About 1778 words)
+                    12 minutes read (About 1784 words)
                 </span>
                 
                 
@@ -178,7 +178,7 @@
 <a id="more"></a>
 
 <h2 id="Diff-作用"><a href="#Diff-作用" class="headerlink" title="Diff 作用"></a>Diff 作用</h2><p>渲染真实<code>DOM</code>需要很大的开销，比如我们修改了某个数据，假如将修改结果直接渲染到真实<code>DOM</code>上，会引起整个<code>DOM</code>结构的重绘和重排序。因此我们需要一种算法，帮助我们实现尽可能只更新真正需要修改的部分，而不是更新整颗<code>DOM</code>树。<code>Diff</code>算法能够实现这样的需求。</p>
-<h2 id="Diff-做法"><a href="#Diff-做法" class="headerlink" title="Diff 做法"></a>Diff 做法</h2><p>我们先根据真实<code>DOM</code>结构生成一颗<a href=""><code>Virtual DOM</code></a>，当<code>Virtual DOM</code>某个节点的数据发生变化后，会生成一个新的<code>Vnode</code>，然后将<code>Vnode</code>和<code>oldVnode</code>作对比。</p>
+<h2 id="Diff-做法"><a href="#Diff-做法" class="headerlink" title="Diff 做法"></a>Diff 做法</h2><p>我们先根据真实<code>DOM</code>结构生成一颗<a href="https://huanglvming.github.io/2020/03/01/virtual-dom/"><code>Virtual DOM</code></a>，当<code>Virtual DOM</code>某个节点的数据发生变化后，会生成一个新的<code>Vnode</code>，然后将<code>Vnode</code>和<code>oldVnode</code>作对比。</p>
 <p><strong><code>Vue</code>只会比较<code>Vnode</code>节点，而不是比较<code>DOM</code></strong>。</p>
 <p>因为<code>Vnode</code>是<code>JS</code>对象，不受平台限制，所以以它作为比较基础，代码逻辑后期不需要改动，拿到比较结果后，根据不同平台调用相应的方法进行处理就好了。</p>
 <h2 id="Diff-逻辑"><a href="#Diff-逻辑" class="headerlink" title="Diff 逻辑"></a>Diff 逻辑</h2><blockquote>
