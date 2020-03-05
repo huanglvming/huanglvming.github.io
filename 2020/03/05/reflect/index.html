@@ -7,18 +7,24 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>Tag: event-loop - 黄律铭</title>
+<title>Reflect - 黄律铭</title>
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="黄律铭">
-<meta property="og:url" content="http://yoursite.com/tags/event-loop/index.html">
+    <meta name="description" content="ES6中将Object的一些明显属于语言内部的方法移植到了Reflect对象上，未来的心方法只部署在Reflect对象上。 Reflect对象对某些方法的返回结果进行了修改，使其更合理。 Reflect对象使用函数的方式实现了Object的命令式操作。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reflect">
+<meta property="og:url" content="http://yoursite.com/2020/03/05/reflect/index.html">
 <meta property="og:site_name" content="黄律铭">
+<meta property="og:description" content="ES6中将Object的一些明显属于语言内部的方法移植到了Reflect对象上，未来的心方法只部署在Reflect对象上。 Reflect对象对某些方法的返回结果进行了修改，使其更合理。 Reflect对象使用函数的方式实现了Object的命令式操作。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://yoursite.com/images/og_image.png">
+<meta property="og:image" content="http://wx3.sinaimg.cn/large/b5d1b710ly1g6s7hn2aycj212w0k0dx5.jpg">
+<meta property="article:published_time" content="2020-03-05T06:16:18.000Z">
+<meta property="article:modified_time" content="2020-03-05T06:17:13.663Z">
 <meta property="article:author" content="huanglvming">
+<meta property="article:tag" content="es6">
+<meta property="article:tag" content="reflect">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
+<meta name="twitter:image" content="http://wx3.sinaimg.cn/large/b5d1b710ly1g6s7hn2aycj212w0k0dx5.jpg">
 
 
 
@@ -76,7 +82,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="黄律铭" height="28">
+                <img src="/images/logo.svg" alt="Reflect" height="28">
             
             </a>
         </div>
@@ -112,6 +118,10 @@
                     
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
                 <a class="navbar-item search" title="Search" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -125,31 +135,20 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">Tags</a></li>
-            <li class="is-active"><a href="#" aria-current="page">event-loop</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
 <div class="card">
     
     <div class="card-image">
-        <a href="/2020/02/24/event-loop/" class="image is-7by1">
-            <img class="thumbnail" src="http://wx3.sinaimg.cn/large/b5d1b710ly1g6s7hn2aycj212w0k0dx5.jpg" alt="事件循环">
-        </a>
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="http://wx3.sinaimg.cn/large/b5d1b710ly1g6s7hn2aycj212w0k0dx5.jpg" alt="Reflect">
+        </span>
     </div>
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-24T08:50:13.000Z">2020-02-24</time>
+                <time class="level-item has-text-grey" datetime="2020-03-05T06:16:18.000Z">2020-03-05</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/JS%E5%9F%BA%E7%A1%80/">JS基础</a>
@@ -159,7 +158,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    9 minutes read (About 1396 words)
+                    6 minutes read (About 936 words)
                 </span>
                 
                 
@@ -168,21 +167,130 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/02/24/event-loop/">事件循环</a>
+                Reflect
             
         </h1>
         <div class="content">
-            <h2 id="JS-为什么是单线程？"><a href="#JS-为什么是单线程？" class="headerlink" title="JS 为什么是单线程？"></a>JS 为什么是单线程？</h2>
+            <blockquote>
+<p><code>ES6</code>中将<code>Object</code>的一些明显属于语言内部的方法移植到了<code>Reflect</code>对象上，未来的心方法只部署在<code>Reflect</code>对象上。</p>
+<p><code>Reflect</code>对象对某些方法的返回结果进行了修改，使其更合理。</p>
+<p><code>Reflect</code>对象使用函数的方式实现了<code>Object</code>的命令式操作。</p>
+</blockquote>
+<a id="more"></a>
+
+<h2 id="为什么使用Reflect"><a href="#为什么使用Reflect" class="headerlink" title="为什么使用Reflect"></a>为什么使用Reflect</h2><h3 id="1-更有用的返回值"><a href="#1-更有用的返回值" class="headerlink" title="1. 更有用的返回值"></a>1. 更有用的返回值</h3><p><code>Reflect</code>对象的方法调用结果是一个<code>Boolean</code>值，不会像<code>Object</code>的方法一样返回<code>obj</code>。</p>
+<p>我们可以对如下代码进行重构：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj, name, desc);</span><br><span class="line">	<span class="comment">// property defined successfully</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">	<span class="comment">// possible failure (and might accidentally catch the wrong exception)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>重构成这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="built_in">Reflect</span>.defineProperty(obj, name, desc)) &#123;</span><br><span class="line">	<span class="comment">// success</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	<span class="comment">// failure</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-更好的操作方式"><a href="#2-更好的操作方式" class="headerlink" title="2. 更好的操作方式"></a>2. 更好的操作方式</h3><p><code>Reflect</code>对象帮我们封装好了一些常用方法，像<code>Math</code>对象一样，我们可以可以直接调用其静态方法。</p>
+<p>如:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 删除属性</span></span><br><span class="line"><span class="keyword">delete</span> obj[name]</span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断属性是否存在</span></span><br><span class="line">name <span class="keyword">in</span> obj</span><br></pre></td></tr></table></figure>
+<p>可以改写成:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 删除属性</span></span><br><span class="line"><span class="built_in">Reflect</span>.deleteProperty(obj, name)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断属性是否存在</span></span><br><span class="line"><span class="built_in">Reflect</span>.has(obj, name)</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-更可靠的函数时执行方式"><a href="#3-更可靠的函数时执行方式" class="headerlink" title="3.更可靠的函数时执行方式"></a>3.更可靠的函数时执行方式</h3><p>在<code>ES5</code>中，如果要执行一个函数<code>f</code>，并且传给它一组参数<code>args</code>，还要绑定<code>this</code>的话，通常这样写：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f.apply(obj, args)</span><br></pre></td></tr></table></figure>
+<p>但是<code>f</code>的<code>apply</code>方法可能被重新定义了，所以比较可靠的写法是：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.apply.call(f, obj, args)</span><br></pre></td></tr></table></figure>
+
+<p>上面这段代码太长，显得不够优雅，我们可以使用<code>Reflect</code>更简洁的实现：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Reflect</span>.apply(f, obj, args)</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-可变参数形式的构造函数"><a href="#4-可变参数形式的构造函数" class="headerlink" title="4. 可变参数形式的构造函数"></a>4. 可变参数形式的构造函数</h3><p>在<code>ES5</code>中，实例化函数方法如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> F(...args)</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = F.apply(<span class="keyword">this</span>, args)</span><br></pre></td></tr></table></figure>
+
+<p>不过<code>ES5</code>不支持扩展符，并且当<strong>F</strong>是一个构造函数的时候，就会显得捉襟见肘。</p>
+<p>但是在<code>ES6</code>中我们可以这样写：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = <span class="built_in">Reflect</span>.construct(F, args)</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-控制访问起活着读取器的this"><a href="#5-控制访问起活着读取器的this" class="headerlink" title="5. 控制访问起活着读取器的this"></a>5. 控制访问起活着读取器的this</h3><p>在<code>ES5</code>中，读取或设置属性需要这样做：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = obj[<span class="string">'name'</span>]; <span class="comment">// 读取属性</span></span><br><span class="line">obj[<span class="string">'name'</span>] = <span class="string">'Jerry'</span> <span class="comment">// 设置属性</span></span><br></pre></td></tr></table></figure>
+
+<p>我和可以使用<code>Reflect.set()</code>方法实现同样的事情，并且增加而外的参数recover，这样允许我们设置对象的<code>setter</code>和<code>getter</code>的上下文<code>this</code>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	<span class="keyword">set</span> foo(value) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.bar();</span><br><span class="line">	&#125;,</span><br><span class="line">	bar: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		alert(<span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> wrapper = &#123;</span><br><span class="line">	bar: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">"wrapper"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Reflect</span>.set(obj, <span class="string">"foo"</span>, <span class="string">"value"</span>, wrapper);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 当我们设置 foo 属性的时候，触发了 this.bar() 函数</span></span><br><span class="line"><span class="comment">// 此时的 this 指向了 wrapper</span></span><br><span class="line"><span class="comment">// 所以触发的是 wrapper.bar() 函数</span></span><br><span class="line"><span class="comment">// 因此输出结果是 'wrapper'</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="6-避免直接访问proto"><a href="#6-避免直接访问proto" class="headerlink" title="6. 避免直接访问proto"></a>6. 避免直接访问<strong>proto</strong></h3><p>我们可以使用<code>Reflect.getPrototypeOf(obj)</code> 和 <code>Reflect.setPrototypeOf(obj, newProto)</code>方法去访问和设置对象的原型</p>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p><code>Reflect</code>对象的方法和<code>Proxy</code>对象的方法一一对应，所以<code>Proxy</code>对象的方法可以通过调用<code>Reflect</code>对象的方法取默认行为，然后进行额外操作。</p>
+<table>
+<thead>
+<tr>
+<th align="left">方法</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">get</td>
+<td align="left">获取某个key值</td>
+</tr>
+<tr>
+<td align="left">set</td>
+<td align="left">设置某个key值</td>
+</tr>
+<tr>
+<td align="left">has</td>
+<td align="left">使用<code>in</code>操作符判断某个key是否存在</td>
+</tr>
+<tr>
+<td align="left">apply</td>
+<td align="left">函数调用，仅在代理对象为<code>function</code>时有效</td>
+</tr>
+<tr>
+<td align="left">ownKeys</td>
+<td align="left">获取目标对象所有的key</td>
+</tr>
+<tr>
+<td align="left">construct</td>
+<td align="left">函数通过实例话调用，仅在代理对象为<code>function</code>时有效</td>
+</tr>
+<tr>
+<td align="left">isExtensible</td>
+<td align="left">判断对象是否可扩展</td>
+</tr>
+<tr>
+<td align="left">deleteProperty</td>
+<td align="left">删除某一个property</td>
+</tr>
+<tr>
+<td align="left">defineProperty</td>
+<td align="left">定义一个新的property</td>
+</tr>
+<tr>
+<td align="left">getPrototypeOf</td>
+<td align="left">获取原型对象</td>
+</tr>
+<tr>
+<td align="left">setPrototypeOf</td>
+<td align="left">设置原型对象</td>
+</tr>
+<tr>
+<td align="left">preventExtensions</td>
+<td align="left">设置对象为不可扩展</td>
+</tr>
+<tr>
+<td align="left">getOwnPropertyDescriptor</td>
+<td align="left">获取一个自有属性(非原型连上的属性)的属性描述</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h2><ol>
+<li><a href="https://www.runoob.com/w3cnote/es6-reflect-proxy.html">ES6 Reflect与Proxy</a></li>
+<li><a href="https://www.jb51.net/article/89087.htm">Javascript中Reflect对象详解</a></li>
+</ol>
+
         </div>
         
-        
-        <div class="level is-mobile">
+        <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2020/02/24/event-loop/#more">Read More</a>
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/es6/" rel="tag">es6</a>, <a class="has-link-grey -link" href="/tags/reflect/" rel="tag">reflect</a>
                 </div>
             </div>
         </div>
+        
         
         
     </div>
@@ -192,7 +300,19 @@
 
 
 
-
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/03/04/proxy/">
+                <span class="level-item">Proxy</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
 </div>
@@ -316,6 +436,54 @@
 </div>
     
         
+
+    <div class="card widget" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    Catalogue
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#为什么使用Reflect">
+        <span class="has-mr-6">1</span>
+        <span>为什么使用Reflect</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#1-更有用的返回值">
+        <span class="has-mr-6">1.1</span>
+        <span>1. 更有用的返回值</span>
+        </a></li><li>
+        <a class="is-flex" href="#2-更好的操作方式">
+        <span class="has-mr-6">1.2</span>
+        <span>2. 更好的操作方式</span>
+        </a></li><li>
+        <a class="is-flex" href="#3-更可靠的函数时执行方式">
+        <span class="has-mr-6">1.3</span>
+        <span>3.更可靠的函数时执行方式</span>
+        </a></li><li>
+        <a class="is-flex" href="#4-可变参数形式的构造函数">
+        <span class="has-mr-6">1.4</span>
+        <span>4. 可变参数形式的构造函数</span>
+        </a></li><li>
+        <a class="is-flex" href="#5-控制访问起活着读取器的this">
+        <span class="has-mr-6">1.5</span>
+        <span>5. 控制访问起活着读取器的this</span>
+        </a></li><li>
+        <a class="is-flex" href="#6-避免直接访问proto">
+        <span class="has-mr-6">1.6</span>
+        <span>6. 避免直接访问proto</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#方法">
+        <span class="has-mr-6">2</span>
+        <span>方法</span>
+        </a></li><li>
+        <a class="is-flex" href="#参考链接：">
+        <span class="has-mr-6">3</span>
+        <span>参考链接：</span>
+        </a></li></ul>
+            </div>
+        </div>
+    </div>
+
     
         
 <div class="card widget">
@@ -1040,7 +1208,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="黄律铭" height="28">
+                    <img src="/images/logo.svg" alt="Reflect" height="28">
                 
                 </a>
                 <p class="is-size-7">
